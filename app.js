@@ -29,7 +29,7 @@ const store = new MongoDBStore({
 const csrfProtection = csrf();
 app.use(
   cors({
-    origin: "http://localhost:3000",
+    origin: `http://localhost:${process.env.PORT}`,
   })
 );
 const fileFilter = (req, file, cb) => {
@@ -69,9 +69,9 @@ app.use(helmet({
   crossOriginEmbedderPolicy: false,
 }));
 app.use(compression());
-app.use(morgan("combined", { stream: loggingAccessStream }));
+// app.use(morgan("combined", { stream: loggingAccessStream }));
 
-app.use(favicon(path.join(__dirname, "public", "favicon", "favicon.ico")));
+// app.use(favicon(path.join(__dirname, "public", "favicon", "favicon.ico")));
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(
   multer({ storage: fileStorage, fileFilter: fileFilter }).single("image")
