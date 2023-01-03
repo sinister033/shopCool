@@ -59,10 +59,10 @@ const adminRoutes = require("./routes/admin");
 const shopRoutes = require("./routes/shop");
 const authRoutes = require("./routes/auth");
 
-const loggingAccessStream = fs.createWriteStream(
-  path.join(__dirname, "loggingAccess.log"),
-  { flag: "a" }
-);
+// const loggingAccessStream = fs.createWriteStream(
+//   path.join(__dirname, "loggingAccess.log"),
+//   { flag: "a" }
+// );
 
 app.use(helmet({
   contentSecurityPolicy:false,
