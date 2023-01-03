@@ -5,7 +5,7 @@
   "main": "app.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "NODE_ENV=production MONGODB_USER=satyam MONGODB_PASS=nodecomplete MONGODB_DATABASE=shop STRIPE_SECRET_KEY=sk_test_51MHmiYSG73lCrGCQVy6TKtP07II8moOp79tuJxjVuaQPTbyg12TaUb2ZYq4Fa1gFYk56sacyzyKcYqCpP8cjM1Cm00vuDeFUnv node app.js",
+    "start": "node app.js",
     "start-server": "node app.js",
     "start:dev": "nodemon app.js"
   },
