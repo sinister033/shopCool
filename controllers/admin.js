@@ -3,7 +3,7 @@ const ITEMS_PER_PAGE = 2;
 
 const fileHelper = require("../util/file");
 
-const { validationResult } = require("express-validator/check");
+const { validationResult } = require("express-validator");
 
 const Product = require("../models/product");
 
