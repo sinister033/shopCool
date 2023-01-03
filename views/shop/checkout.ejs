@@ -1,0 +1,56 @@
+<%- include('../includes/head.ejs') %>
+<link rel="stylesheet" href="/css/cart.css">
+<script  src="https://polyfill.io/v3/polyfill.min.js?version=3.52.1&features=fetch"></script>
+<script  src="https://js.stripe.com/v3/"></script>
+    </head>
+    <body>
+        <%- include('../includes/navigation.ejs') %>
+            <main>
+                <ul class="cart__item-list">
+                    <% products.forEach(p=> { %>
+                        <li class="cart__item">
+                            <h1>
+                                <%= p.productId.title %>
+                            </h1>
+                            <h2>Quantity: <%= p.quantity %>
+                            </h2>
+                            <form action="/cart-delete-item" method="POST">
+                                <input type="hidden" value="<%= p.productId._id %>" name="productId">
+                                <input type="hidden" name="_csrf" value="<%= csrfToken %>">
+                            </form>
+                        </li>
+                        <% }) %>
+                </ul>
+            </main>
+
+            <div class="centered">
+                <h2>Total Price: ₹<%=totalSum%>
+                </h2>
+            </div>
+
+            <div class="centered">
+                <a id="order-btn" class="btn">Proceed to Pay</a>
+            </div>
+            <!-- <form action="/create-order" method="POST">
+                            <script src="//checkout.stripe.com/v2/checkout.js" class="stripe-button "
+                                data-key="pk_test_51MHmiYSG73lCrGCQQYKdnqA6g2jxHco16u00aNmlpN1Uq1esVynwvKkiQQkd4OaOH9gw50thSq3EuvmrVjWfORFX00Wn9BKWqE"
+                                data-amount="<%=totalSum*100%>" 
+                                data-name="Your Order"
+                                data-description="Here is what you  have Ordered!" 
+                                data-image="https://cdn-icons-png.flaticon.com/512/3082/3082011.png"
+                                data-locale="auto"
+                                data-currency="usd">
+                                </script>
+                        </form> -->
+
+            <%- include('../includes/end.ejs') %>
+                <script>
+                    var stripe = Stripe("pk_test_51MHmiYSG73lCrGCQQYKdnqA6g2jxHco16u00aNmlpN1Uq1esVynwvKkiQQkd4OaOH9gw50thSq3EuvmrVjWfORFX00Wn9BKWqE");
+                
+                    var orderBtn = document.getElementById("order-btn");
+                    orderBtn.addEventListener("click", function () {
+                        stripe.redirectToCheckout({
+                            sessionId: "<%= sessionId %>"
+                        })
+                    })
+                </script>
