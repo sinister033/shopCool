@@ -217,7 +217,7 @@ exports.postReset = (req, res, next) => {
             to: req.body.email,
             subject: "Regarding Password Reset",
             html: `<p>Here is Your Link for Password Reset</p>
-              <h1><a href="http://localhost:3000/reset/${token}">Click me </a></h1><p> To set a new Password</p>`,
+              <h1><a href="http://localhost:${process.env.PORT}/reset/${token}">Click me </a></h1><p> To set a new Password</p>`,
           })
           .then((result) => {
             console.log("Email Sent");
