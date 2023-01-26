@@ -1,5 +1,5 @@
+require("dotenv").config()
 const path = require("path");
-const fs = require("fs");
 const cors = require("cors");
 const express = require("express");
 const bodyParser = require("body-parser");
@@ -9,12 +9,9 @@ const MongoDBStore = require("connect-mongodb-session")(session);
 const csrf = require("csurf");
 const flash = require("connect-flash");
 const multer = require("multer");
-const shopController = require("./controllers/shop");
-const isAuth = require("./middleware/is-auth");
 const favicon = require("serve-favicon");
 const helmet = require("helmet");
 const compression = require("compression");
-const morgan = require("morgan");
 
 const errorController = require("./controllers/error");
 const User = require("./models/user");
@@ -141,6 +138,7 @@ app.use((error, req, res, next) => {
 mongoose
   .connect(MONGODB_URI)
   .then((result) => {
+    // console.log(result);
     app.listen(process.env.PORT || 3000);
   })
   .catch((err) => {
